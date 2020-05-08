@@ -1,0 +1,11 @@
+---
+- name: Implementing when conditions
+  hosts: all
+  vars: 
+   - a: 20
+  tasks:
+   - name: Create file
+     file:
+      name: /tmp/file1
+      state: touch
+     when: a == 10

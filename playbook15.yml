@@ -1,0 +1,23 @@
+---
+- name: Implementing handlers
+  hosts: all
+  tasks:
+   - name: Install apache2
+     apt:
+      name: apache2
+      state: present
+     notify: Check url response
+   - name: Edit index.html file
+     copy:
+      content: "Welcome to devops world Prasanna Nayak All the best\n"
+      dest: /var/www/html/index.html
+     notify: Restart apache2
+  handlers: 
+   - name: Restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: Check url response
+     uri:
+      url: http://172.31.40.168
+      status_code: 200

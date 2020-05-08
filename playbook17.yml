@@ -1,0 +1,14 @@
+---
+- name: Installing tomcat8 using ubuntu or yum
+  hosts: all
+  tasks:
+   - block: 
+      - name: Installing tomcat8 on redhat
+        yum:
+         name: tomcat8
+         state: present
+     rescue: 
+      - name: Installing tomcat8 on ubuntu
+        apt:
+         name: tomcat8
+         state: present

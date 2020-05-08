@@ -1,0 +1,10 @@
+---
+- name: Creating a file on all nodes
+  hosts: all
+  tasks:
+   - name: Creating file
+     file:
+      name: myfile
+      state: touch
+      mode: 775
+

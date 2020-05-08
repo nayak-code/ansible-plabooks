@@ -1,0 +1,10 @@
+---
+- name: Implementing host scope variables
+  hosts: webserver
+  tasks: 
+   - name: Creating file
+     file:
+      name: "{{a}}"
+      state: "{{b}}"
+      mode: "{{c}}"
+

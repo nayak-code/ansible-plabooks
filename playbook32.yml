@@ -1,0 +1,8 @@
+---
+- name: Pull docker images
+  hosts: all
+  tasks:
+   - name: Download docker image
+     docker_image:
+      name: http
+

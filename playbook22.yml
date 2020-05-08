@@ -1,0 +1,17 @@
+---
+- name: Check if dir d11 is present,if it is not present create d1 file
+  hosts: all
+  tasks: 
+   - name: Check dir d11 is present 
+     stat:
+      path: /home/ubuntu/d11
+     register: news
+   - name: Display output of above module
+     debug:
+      var: news
+   - name: Create d1 if there is no d1 dir
+     file:
+      name: /home/ubuntu/d11
+      state: touch
+     when:
+      news.stat.exists == false

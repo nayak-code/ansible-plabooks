@@ -1,0 +1,14 @@
+---
+- name: Install/uninstall various s/w apps
+  hosts: all
+  tasks:
+   - name: Install/uninstall s/w
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: git,b: absent,c: yes}
+      - {a: maven,b: absent,c: no}
+      - {a: tree,b: absent,c: no}
+      - {a: firewalld,b: absent,c: no}

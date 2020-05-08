@@ -1,0 +1,21 @@
+---
+- name: Implementing tags
+  hosts: all
+  tasks:
+   - name: Insatlling tree
+     apt:
+      name: tree
+      state: present
+     tags: tree_installation
+   - name: Create user
+     user:
+      name: tesla
+      password: tesla
+      home: /home/tesla
+     tags: user_creation
+   - name: Copy passwd file
+     copy:
+      src: /etc/passwd
+      dest: /tmp
+...
+     

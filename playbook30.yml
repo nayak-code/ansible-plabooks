@@ -1,0 +1,12 @@
+---
+- name: Start centos as a container and mount /data as a volume
+  hosts: all
+  tasks: 
+   - name: Start centos as a container
+     docker_container:
+      image: centos
+      name: mycent
+      volumes: 
+       - /data
+      interactive: yes
+      tty: yes

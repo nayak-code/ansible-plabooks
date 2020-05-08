@@ -1,0 +1,21 @@
+---
+- name: Configuring apache2
+  hosts: all
+  tasks:
+   - name: Install apache2
+     apt:
+      name: apache2
+      state: present
+   - name: Edit index.html file
+     copy:
+      content: "HELLO NYK WELCOME TO IT WORLD\n"
+      dest: /var/www/html/index.html
+   - name: Restart apache2
+     service: 
+      name: apache2
+      state: restarted
+   - name: Check url response 
+     uri:
+      url: http://172.31.40.168
+      status_code: 200
+

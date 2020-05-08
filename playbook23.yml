@@ -1,0 +1,17 @@
+---
+- name: Check whether user saha is present ,if not then create saha
+  hosts: all
+  tasks:
+   - name: Check if saha is present or not
+     user:
+      name: saha
+     register: result
+   - name: Display the o/p of above module
+     debug:
+      var: result
+   - name: Creating saha user if it isn't present
+     user:
+      name: saha
+      password: modi
+     when:
+      result.changed == true

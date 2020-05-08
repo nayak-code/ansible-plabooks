@@ -1,0 +1,13 @@
+---
+- name: Creting files & dir
+  hosts: all
+  tasks:
+   - name: Creating files and directories
+     file:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      mode: "{{item.c}}"
+     with_items:
+      - {a: doc1,b: touch,c: 770}
+      - {a: doc2,b: touch,c: 777}
+      - {a: mydir,b: directory,c: 700}

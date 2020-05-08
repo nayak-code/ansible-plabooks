@@ -1,0 +1,18 @@
+---
+- name: Setup of mysql with wordpress using docker-compose 
+  hosts: all
+  tasks: 
+   - name: Start mysql as a container
+     docker_container:
+      image: mysql:5
+      name: mydb
+      env:
+       MYSQL_ROOT_PASSWORD: nayak
+
+   - name: Start wordpress as a container
+     docker_container: 
+      image: wordpress
+      name: mywordpress
+      ports:
+       - 8899:80
+

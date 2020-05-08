@@ -1,0 +1,21 @@
+---
+- name: Implementing docker compose for jenkins setup
+  hosts: all
+  tasks:
+   - name: Start jenkins as a container
+     docker_container: 
+      image: jenkins
+      name: devserver
+      ports: 
+       - 5050:8080
+
+   - name: Start tomcat as a container on QAserver & Prodserver
+     docker_container:
+      image: tomcat
+      name: "{{item.a}}"
+      ports:
+       - "{{item.b}}"
+     with_items:
+      - {a: qaserver,b: "6060:8080"}
+      - {a: prodserver,b: "7070:8080"}
+
